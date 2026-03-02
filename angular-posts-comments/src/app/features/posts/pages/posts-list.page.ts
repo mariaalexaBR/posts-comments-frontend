@@ -4,13 +4,15 @@ import { PostsService } from '../services/posts.service';
 import { Post } from '../../../shared/models/post.model';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-posts-list',
   standalone: true,
   imports: [
     CommonModule,   // <-- Necesario para *ngIf y *ngFor
-    DatePipe        // <-- Necesario para | date
+    DatePipe,        // <-- Necesario para | date
+    RouterLink
   ],
   templateUrl: './posts-list.page.html',
 })

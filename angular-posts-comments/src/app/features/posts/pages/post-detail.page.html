@@ -1,0 +1,35 @@
+<div class="max-w-3xl mx-auto">
+
+  <div *ngIf="loading()">Loading...</div>
+
+  <div *ngIf="error()" class="text-red-600">
+    {{ error() }}
+  </div>
+
+  <div *ngIf="post()">
+
+    <h1 class="text-3xl font-bold mb-2">{{ post()?.title }}</h1>
+
+    <p class="text-gray-500 mb-6">
+      {{ post()?.author }} • {{ post()?.createdAt | date:'short' }}
+    </p>
+
+    <p class="mb-6">{{ post()?.body }}</p>
+
+    <h2 class="text-xl font-semibold mb-4">Comments</h2>
+
+    <div *ngIf="comments().length === 0">
+      No comments yet.
+    </div>
+
+    <div *ngFor="let comment of comments()" 
+         class="border p-3 mb-3 rounded">
+
+      <p class="font-semibold">{{ comment.name }}</p>
+      <p class="text-sm text-gray-500">{{ comment.email }}</p>
+      <p>{{ comment.body }}</p>
+
+    </div>
+
+  </div>
+</div>

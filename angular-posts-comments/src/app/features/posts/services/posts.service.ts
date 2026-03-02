@@ -1,8 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { delay } from 'rxjs/operators';
-import { ApiResponse, PaginatedResponse, Post } from '../../../shared/models/post.model';
+import { Post } from '../../../shared/models/post.model';
+import { ApiResponse, PaginatedResponse } from '../../../shared/models/paginated-response.model';
 import { Observable } from 'rxjs';
+import { PostComment } from '../../../shared/models/comment.model';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
@@ -21,5 +23,16 @@ export class PostsService {
       .pipe(
         delay(500) // UX loading obligatorio
       );
+  }
+
+  getPostById(id: string) {
+    return this.http.get<ApiResponse<Post>>(`${this.baseUrl}/${id}`);
+  }
+
+  getCommentsByPost(postId: string) {
+    return this.http.get<ApiResponse<PaginatedResponse<PostComment>>>(
+      'http://localhost:3000/api/comments',
+      { params: { postId } }
+    );
   }
 }
