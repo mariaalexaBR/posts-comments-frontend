@@ -46,8 +46,6 @@ export class PostsListPage implements OnInit {
     .pipe(
       tap(response => {
 
-        console.log('API RESPONSE:', response); // 🔥 DEBUG
-
         if (!response?.success) {
           throw new Error('Invalid response');
         }
@@ -59,8 +57,7 @@ export class PostsListPage implements OnInit {
         this.loading.set(false);
       }),
       catchError((err) => {
-        console.error('HTTP ERROR:', err); // 🔥 DEBUG
-        this.error.set('Error loading posts');
+        this.error.set(err.message);
         this.loading.set(false);
         return of(null);
       })

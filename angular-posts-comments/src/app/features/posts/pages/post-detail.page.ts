@@ -40,7 +40,7 @@ export class PostDetailPage {
         );
       }),
       catchError(err => {
-        this.error.set('Error loading post');
+        this.error.set(err.message);
         return of(null);
       })
     ).subscribe(() => {
