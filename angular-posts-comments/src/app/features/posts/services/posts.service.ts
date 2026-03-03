@@ -43,4 +43,11 @@ export class PostsService {
   updatePost(id: string, data: any) {
     return this.http.put<ApiResponse<Post>>(`/posts/${id}`, data);
   }
+
+  createComment(comment: any) {
+  return this.http.post<ApiResponse<PostComment>>(
+    '/comments',
+    comment
+  );
+}
 }

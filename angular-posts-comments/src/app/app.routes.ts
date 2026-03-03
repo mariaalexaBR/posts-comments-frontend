@@ -11,7 +11,7 @@ export const routes: Routes = [
 
   { path: 'posts/new', component: PostFormPage },
 
-  { path: 'posts/:id', component: PostFormPage },
+  { path: 'posts/:id/edit', component: PostFormPage },
 
   { path: 'posts/:id', component: PostDetailPage }
 ];

@@ -7,22 +7,30 @@ import { of } from 'rxjs';
 import { PostsService } from '../../services/posts.service';
 import { Post } from '../../../../shared/models/post.model';
 import { PostComment } from '../../../../shared/models/comment.model';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post-detail',
   standalone: true,
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule, DatePipe, ReactiveFormsModule],
   templateUrl: './post-detail.page.html',
 })
 export class PostDetailPage {
 
   private route = inject(ActivatedRoute);
   private postsService = inject(PostsService);
+  private fb = inject(FormBuilder);
 
   post = signal<Post | null>(null);
   comments = signal<PostComment[]>([]);
   loading = signal(true);
   error = signal<string | null>(null);
+
+  commentForm = this.fb.group({
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    body: ['', [Validators.required, Validators.minLength(5)]],
+  });
 
   constructor() {
     this.route.paramMap.pipe(
@@ -45,6 +53,24 @@ export class PostDetailPage {
       })
     ).subscribe(() => {
       this.loading.set(false);
+    });
+  }
+
+  submitComment() {
+    if (this.commentForm.invalid || !this.post()) return;
+
+    const payload = {
+      ...this.commentForm.value,
+      postId: this.post()?._id
+    };
+
+    this.postsService.createComment(payload).subscribe({
+      next: (res) => {
+        const newComment = res.data;
+        this.comments.update(current => [newComment, ...current]);
+        this.commentForm.reset();
+      },
+      error: (err) => console.error(err)
     });
   }
 }
