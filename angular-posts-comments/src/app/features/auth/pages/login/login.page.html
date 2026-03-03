@@ -1,0 +1,41 @@
+<div class="flex items-center justify-center min-h-screen">
+
+  <div class="w-full max-w-sm bg-white p-6 rounded shadow">
+
+    <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+
+    <div *ngIf="error()" class="text-red-600 mb-3 text-center">
+      {{ error() }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+
+      <div>
+        <input
+          type="text"
+          placeholder="Username"
+          formControlName="username"
+          class="w-full border p-2 rounded"
+        />
+      </div>
+
+      <div>
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+          class="w-full border p-2 rounded"
+        />
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loading()"
+        class="w-full bg-blue-600 text-white py-2 rounded disabled:opacity-50">
+        {{ loading() ? 'Logging in...' : 'Login' }}
+      </button>
+
+    </form>
+
+  </div>
+</div>
