@@ -35,4 +35,12 @@ export class PostsService {
       { params: { postId } }
     );
   }
+
+  createPost(data: any) {
+    return this.http.post<ApiResponse<Post>>('/posts', data);
+  }
+
+  updatePost(id: string, data: any) {
+    return this.http.patch<ApiResponse<Post>>(`/posts/${id}`, data);
+  }
 }

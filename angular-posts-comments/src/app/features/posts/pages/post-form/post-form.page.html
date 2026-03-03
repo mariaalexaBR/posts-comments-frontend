@@ -1,0 +1,66 @@
+<div class="max-w-xl mx-auto mt-6">
+
+  <h1 class="text-2xl font-bold mb-6">
+    {{ isEditMode ? 'Edit Post' : 'Create Post' }}
+  </h1>
+
+  <div *ngIf="error()" class="text-red-600 mb-4">
+    {{ error() }}
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+
+    <!-- TITLE -->
+    <div>
+      <label class="block font-medium mb-1">Title</label>
+      <input
+        type="text"
+        formControlName="title"
+        class="border w-full p-2 rounded"
+      />
+      <small class="text-red-600"
+        *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
+        Title is required (min 3 characters)
+      </small>
+    </div>
+
+    <!-- BODY -->
+    <div>
+      <label class="block font-medium mb-1">Body</label>
+      <textarea
+        formControlName="body"
+        rows="4"
+        class="border w-full p-2 rounded">
+      </textarea>
+      <small class="text-red-600"
+        *ngIf="form.get('body')?.invalid && form.get('body')?.touched">
+        Body is required (min 10 characters)
+      </small>
+    </div>
+
+    <!-- AUTHOR -->
+    <div>
+      <label class="block font-medium mb-1">Author</label>
+      <input
+        type="text"
+        formControlName="author"
+        class="border w-full p-2 rounded"
+      />
+      <small class="text-red-600"
+        *ngIf="form.get('author')?.invalid && form.get('author')?.touched">
+        Author is required
+      </small>
+    </div>
+
+    <!-- BUTTON -->
+    <button
+      type="submit"
+      [disabled]="loading()"
+      class="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50">
+
+      {{ loading() ? 'Saving...' : 'Save' }}
+    </button>
+
+  </form>
+
+</div>
