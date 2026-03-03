@@ -10,7 +10,7 @@ import { PostComment } from '../../../shared/models/comment.model';
 export class PostsService {
 
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3000/api/posts';
+  private baseUrl = '/posts';
 
   getPosts(page = 1, limit = 5): Observable<ApiResponse<PaginatedResponse<Post>>> {
 
@@ -31,7 +31,7 @@ export class PostsService {
 
   getCommentsByPost(postId: string) {
     return this.http.get<ApiResponse<PaginatedResponse<PostComment>>>(
-      'http://localhost:3000/api/comments',
+      '/comments',
       { params: { postId } }
     );
   }
