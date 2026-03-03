@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { PostsListPage } from './features/posts/pages/posts-list.page';
-import { PostDetailPage } from './features/posts/pages/post-detail.page';
+import { PostsListPage } from '../app/features/posts/pages/post-list/posts-list.page';
+import { PostDetailPage } from '../app/features/posts/pages/post-detail/post-detail.page';
 import { PostFormPage } from '../app/features/posts/pages/post-form/post-form.page';
 
 export const routes: Routes = [

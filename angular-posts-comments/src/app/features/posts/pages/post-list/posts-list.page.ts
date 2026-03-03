@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { PostsService } from '../services/posts.service';
-import { Post } from '../../../shared/models/post.model';
+import { PostsService } from '../../services/posts.service';
+import { Post } from '../../../../shared/models/post.model';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { RouterLink } from '@angular/router';

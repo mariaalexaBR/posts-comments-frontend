@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { PostsService } from '../services/posts.service';
-import { Post } from '../../../shared/models/post.model';
-import { PostComment } from '../../../shared/models/comment.model';
+import { PostsService } from '../../services/posts.service';
+import { Post } from '../../../../shared/models/post.model';
+import { PostComment } from '../../../../shared/models/comment.model';
 
 @Component({
   selector: 'app-post-detail',
