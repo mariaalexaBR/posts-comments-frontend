@@ -41,6 +41,6 @@ export class PostsService {
   }
 
   updatePost(id: string, data: any) {
-    return this.http.patch<ApiResponse<Post>>(`/posts/${id}`, data);
+    return this.http.put<ApiResponse<Post>>(`/posts/${id}`, data);
   }
 }

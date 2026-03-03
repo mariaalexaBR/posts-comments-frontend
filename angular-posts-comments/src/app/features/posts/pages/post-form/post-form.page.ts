@@ -66,7 +66,8 @@ export class PostFormPage implements OnInit {
       this.postsService.updatePost(this.postId, this.form.value)
         .subscribe({
           next: () => {
-            this.router.navigate(['/posts', this.postId]);
+            this.loading.set(false);
+            this.router.navigateByUrl('/');
           },
           error: () => {
             this.error.set('Error updating post');
@@ -76,8 +77,9 @@ export class PostFormPage implements OnInit {
     } else {
       this.postsService.createPost(this.form.value)
         .subscribe({
-          next: (res) => {
-            this.router.navigate(['/posts', res.data._id]);
+          next: () => {
+            this.loading.set(false);
+            this.router.navigateByUrl('/');
           },
           error: () => {
             this.error.set('Error creating post');
