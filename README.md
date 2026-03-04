@@ -1,25 +1,25 @@
 # 📘 Posts & Comments – Frontend
 
-Frontend application built with **Angular** to manage Posts and Comments.
-This project consumes a REST API built with NestJS.
+Aplicación frontend desarrollada con **Angular** para la gestión de Posts y Comments.
+Este proyecto consume una API REST desarrollada con NestJS.
 
 ---
 
-## 🚀 Tech Stack
+## 🚀 Tecnologías utilizadas
 
-| Technology | Description |
+| Tecnología | Descripción |
 |---|---|
-| Angular (Standalone Components) | Main framework |
-| TypeScript | Typed JavaScript |
-| RxJS | Reactive programming |
-| Angular Signals | State management |
-| SweetAlert2 | Alert dialogs |
-| TailwindCSS | Utility-first styling |
-| REST API | NestJS backend integration |
+| Angular (Standalone Components) | Framework principal |
+| TypeScript | JavaScript tipado |
+| RxJS | Programación reactiva |
+| Angular Signals | Manejo de estado |
+| SweetAlert2 | Alertas y diálogos |
+| TailwindCSS | Estilos utilitarios |
+| REST API | Integración con backend NestJS |
 
 ---
 
-## 📂 Project Structure
+## 📂 Estructura del proyecto
 
 ```
 src/app/
@@ -39,23 +39,23 @@ src/app/
 └── app.routes.ts
 ```
 
-- **`features/`** → Domain-specific modules (Posts)
-- **`shared/`** → Reusable components (Table, Pagination, etc.)
-- **`core/`** → Global services, interceptors and utilities
-- Standalone components architecture (no NgModules)
+- **`features/`** → Módulos por dominio (Posts)
+- **`shared/`** → Componentes reutilizables (Table, Pagination, etc.)
+- **`core/`** → Servicios globales, interceptors y utilidades
+- Arquitectura de componentes standalone (sin NgModules)
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Instalación
 
-### 1️⃣ Clone the repository
+### 1️⃣ Clonar el repositorio
 
 ```bash
 git clone https://github.com/mariaalexaBR/posts-comments-frontend.git
 cd posts-comments-frontend/angular-comments-frontend
 ```
 
-### 2️⃣ Install dependencies
+### 2️⃣ Instalar dependencias
 
 ```bash
 npm install
@@ -93,22 +93,22 @@ ng version
 ng serve
 ```
 
-App will run on: **http://localhost:4200**
+La aplicación estará disponible en: **http://localhost:4200**
 
 ---
 
-## 🌐 API Configuration
+## 🌐 Configuración de la API
 
-This frontend expects the backend API running at:
+Este frontend espera el backend corriendo en:
 
 ```
 http://localhost:3000/api
 ```
 
-> Make sure the NestJS backend is up and running before launching the frontend.
+> Asegúrate de que el backend NestJS esté levantado antes de iniciar el frontend.
 
 ---
 
-## 👩‍💻 Author
+## 👩‍💻 Autora
 
-Developed by **Alexandra Brenes**
+Desarrollado por **Alexandra Brenes**
