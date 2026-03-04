@@ -61,33 +61,33 @@ cd posts-comments-frontend/angular-comments-frontend
 npm install
 ```
 
-### 3️⃣ Prerequisites
+### 3️⃣ Requisitos previos
 
-Make sure you have the following installed:
+Asegúrate de tener instalado:
 
-- **Node.js** v18 or higher → [https://nodejs.org](https://nodejs.org)
+- **Node.js** v18 o superior → [https://nodejs.org](https://nodejs.org)
 - **Angular CLI**
 
-Verify Node and npm:
+Verificar Node y npm:
 
 ```bash
 node -v
 npm -v
 ```
 
-Install Angular CLI globally:
+Instalar Angular CLI de forma global:
 
 ```bash
 npm install -g @angular/cli
 ```
 
-Verify Angular CLI installation:
+Verificar la instalación de Angular CLI:
 
 ```bash
 ng version
 ```
 
-### 4️⃣ Run development server
+### 4️⃣ Levantar el servidor de desarrollo
 
 ```bash
 ng serve
