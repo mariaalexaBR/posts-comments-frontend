@@ -52,7 +52,7 @@ src/app/
 
 ```bash
 git clone https://github.com/mariaalexaBR/posts-comments-frontend.git
-cd posts-comments-frontend/angular-posts-comments
+cd posts-comments-frontend/angular-comments-frontend
 ```
 
 ### 2️⃣ Install dependencies
@@ -85,4 +85,4 @@ http://localhost:3000/api
 
 ## 👩‍💻 Author
 
-Developed by **Alexandra Brenes**
+Developed with ❤️ by **Alexandra Brenes**
