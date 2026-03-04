@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -7,12 +7,20 @@ import { of } from 'rxjs';
 import { PostsService } from '../../services/posts.service';
 import { Post } from '../../../../shared/models/post.model';
 import { PostComment } from '../../../../shared/models/comment.model';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { PostHeaderComponent } from '../../components/post-header.component/post-header.component';
+import { CommentFormComponent } from '../../components/comment-form.component/comment-form.component';
+import { CommentListComponent } from '../../components/comment-list.component/comment-list.component';
 
 @Component({
   selector: 'app-post-detail',
   standalone: true,
-  imports: [CommonModule, DatePipe, ReactiveFormsModule],
+  imports: [
+    CommonModule, 
+    PostHeaderComponent,
+    CommentFormComponent,
+    CommentListComponent
+  ],
   templateUrl: './post-detail.page.html',
 })
 export class PostDetailPage {
@@ -56,21 +64,16 @@ export class PostDetailPage {
     });
   }
 
-  submitComment() {
-    if (this.commentForm.invalid || !this.post()) return;
+  onCommentSubmit(data: any) {
 
     const payload = {
-      ...this.commentForm.value,
+      ...data,
       postId: this.post()?._id
     };
 
-    this.postsService.createComment(payload).subscribe({
-      next: (res) => {
-        const newComment = res.data;
-        this.comments.update(current => [newComment, ...current]);
-        this.commentForm.reset();
-      },
-      error: (err) => console.error(err)
-    });
+    this.postsService.createComment(payload)
+      .subscribe(res => {
+        this.comments.update(current => [res.data, ...current]);
+      });
   }
 }

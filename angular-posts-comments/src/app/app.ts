@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginModalComponent } from './shared/components/login-modal.component';
+import { LoginModalComponent } from './shared/components/login-modal.component/login-modal.component';
 
 @Component({
   selector: 'app-root',

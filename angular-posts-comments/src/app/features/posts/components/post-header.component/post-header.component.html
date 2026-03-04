@@ -1,0 +1,7 @@
+<div *ngIf="post">
+    <h1 class="text-3xl font-bold mb-2">{{ post.title }}</h1>
+    <p class="text-gray-500 mb-6">
+        {{ post.author }} • {{ post.createdAt | date:'short' }}
+    </p>
+    <p class="mb-6">{{ post.body }}</p>
+</div>

@@ -1,0 +1,12 @@
+<div *ngIf="comments.length === 0">
+  No comments yet.
+</div>
+
+<div *ngFor="let comment of comments"
+     class="border p-3 mb-3 rounded">
+
+  <p class="font-semibold">{{ comment.name }}</p>
+  <p class="text-sm text-gray-500">{{ comment.email }}</p>
+  <p>{{ comment.body }}</p>
+
+</div>

@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="mb-6 space-y-3">
+
+  <input type="text"
+         placeholder="Your name"
+         formControlName="name"
+         class="w-full p-2 border rounded" />
+
+  <input type="email"
+         placeholder="Your email"
+         formControlName="email"
+         class="w-full p-2 border rounded" />
+
+  <textarea placeholder="Write a comment..."
+            formControlName="body"
+            class="w-full p-2 border rounded"></textarea>
+
+  <button type="submit"
+          [disabled]="form.invalid"
+          class="px-4 py-2 bg-blue-600 text-white rounded">
+    Add Comment
+  </button>
+
+</form>
