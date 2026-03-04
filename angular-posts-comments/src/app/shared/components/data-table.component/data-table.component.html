@@ -1,0 +1,46 @@
+<div class="overflow-x-auto">
+    <table class="min-w-full border border-gray-200 rounded-lg">
+
+        <thead class="bg-gray-100">
+            <tr>
+                <th *ngFor="let col of columns" class="px-4 py-2 text-left text-sm font-semibold border-b">
+                    {{ col.header }}
+                </th>
+
+                <th *ngIf="actions.length" class="px-4 py-2 text-left text-sm font-semibold border-b">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let row of data" class="hover:bg-gray-50">
+
+                <td *ngFor="let col of columns" class="px-4 py-2 border-b text-sm">
+
+                    <span *ngIf="col.field !== 'createdAt'">
+                        {{ row[col.field] }}
+                    </span>
+
+                    <span *ngIf="col.field === 'createdAt'">
+                        {{ row[col.field] | date:'short' }}
+                    </span>
+
+                </td>
+
+                <td *ngIf="actions.length" class="px-4 py-2 border-b text-sm">
+                    <button *ngFor="let action of actions" (click)="onAction(action.type, row)"
+                        class="mr-3 hover:underline" [ngClass]="{
+              'text-blue-600': action.type === 'view',
+              'text-yellow-600': action.type === 'edit',
+              'text-red-600': action.type === 'delete'
+            }">
+                        {{ action.label }}
+                    </button>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+</div>

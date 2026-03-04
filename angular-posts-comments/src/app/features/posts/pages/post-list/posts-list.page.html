@@ -27,42 +27,11 @@
     No posts found.
   </div>
 
-  <!-- Posts -->
-  <div class="space-y-4">
-    <div *ngFor="let post of filteredPosts()" class="bg-white p-4 shadow rounded-lg">
+  <app-data-table [columns]="columns" [data]="filteredPosts()" [actions]="actions"
+    (actionClicked)="handleAction($event)">
+  </app-data-table>
 
-      <h2 class="text-xl font-semibold">{{ post.title }}</h2>
-      <p class="text-sm text-gray-500">
-        {{ post.author }} • {{ post.createdAt | date:'short' }}
-      </p>
-
-      <div class="flex gap-3 mt-3">
-        <a [routerLink]="['/posts', post._id]" class="text-blue-600 hover:underline">
-          View
-        </a>
-        <a [routerLink]="['/posts', post._id, 'edit']" class="text-yellow-600 hover:underline">
-          Edit
-        </a>
-        <button class="text-red-600 hover:underline">Delete</button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Pagination -->
-  <div class="flex justify-between mt-6">
-
-    <button (click)="prevPage()" [disabled]="page() === 1" class="px-4 py-2 bg-gray-300 rounded disabled:opacity-50">
-      Previous
-    </button>
-
-    <span>Page {{ page() }} of {{ totalPages() }}</span>
-
-    <button (click)="nextPage()" [disabled]="page() === totalPages()"
-      class="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50">
-      Next
-    </button>
-
-  </div>
+  <app-pagination [page]="page()" [totalPages]="totalPages()" (pageChange)="onPageChange($event)">
+  </app-pagination>
 
 </div>
