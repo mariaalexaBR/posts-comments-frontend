@@ -85,4 +85,4 @@ http://localhost:3000/api
 
 ## 👩‍💻 Author
 
-Developed with ❤️ by **Alexandra Brenes**
+Developed by **Alexandra Brenes**
