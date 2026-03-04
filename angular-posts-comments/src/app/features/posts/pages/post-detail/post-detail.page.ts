@@ -10,16 +10,16 @@ import { PostComment } from '../../../../shared/models/comment.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PostHeaderComponent } from '../../components/post-header.component/post-header.component';
 import { CommentFormComponent } from '../../components/comment-form.component/comment-form.component';
-import { CommentListComponent } from '../../components/comment-list.component/comment-list.component';
+import { CommentTableComponent } from '../../components/comment-table.component/comment-table.component';
 
 @Component({
   selector: 'app-post-detail',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     PostHeaderComponent,
     CommentFormComponent,
-    CommentListComponent
+    CommentTableComponent
   ],
   templateUrl: './post-detail.page.html',
 })
@@ -64,6 +64,16 @@ export class PostDetailPage {
     });
   }
 
+  loadComments() {
+    const id = this.post()?._id;
+    if (!id) return;
+
+    this.postsService.getCommentsByPost(id)
+      .subscribe(res => {
+        this.comments.set(res.data.items);
+      });
+  }
+
   onCommentSubmit(data: any) {
 
     const payload = {
@@ -72,8 +82,13 @@ export class PostDetailPage {
     };
 
     this.postsService.createComment(payload)
-      .subscribe(res => {
-        this.comments.update(current => [res.data, ...current]);
+      .subscribe(() => {
+
+        this.loadComments();   // 🔥 recargar lista
+        this.commentForm.reset(); // opcional pero recomendado
+
       });
   }
+
+
 }

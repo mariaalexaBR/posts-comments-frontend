@@ -29,6 +29,10 @@ export class PostsService {
     return this.http.get<ApiResponse<Post>>(`${this.baseUrl}/${id}`);
   }
 
+  deletePost(id: string) {
+    return this.http.delete<any>(`/posts/${id}`);
+  }
+
   getCommentsByPost(postId: string) {
     return this.http.get<ApiResponse<PaginatedResponse<PostComment>>>(
       '/comments',
@@ -45,9 +49,9 @@ export class PostsService {
   }
 
   createComment(comment: any) {
-  return this.http.post<ApiResponse<PostComment>>(
-    '/comments',
-    comment
-  );
-}
+    return this.http.post<ApiResponse<PostComment>>(
+      '/comments',
+      comment
+    );
+  }
 }

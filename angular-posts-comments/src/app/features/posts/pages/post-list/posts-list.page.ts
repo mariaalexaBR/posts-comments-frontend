@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { RouterLink, RouterModule, Router } from '@angular/router';
 import { DataTableComponent, TableColumn } from '../../../../shared/components/data-table.component/data-table.component';
 import { PaginationComponent } from '../../../../shared/components/pagination.component/pagination.component';
+import Swal from 'sweetalert2';
 
 
 
@@ -104,10 +105,56 @@ export class PostsListPage implements OnInit {
         break;
 
       case 'delete':
-        if (confirm('Are you sure?')) {
-          // luego conectamos al backend
-          console.log('Delete', post._id);
-        }
+
+        Swal.fire({
+          title: 'Delete post?',
+          text: 'This action cannot be undone.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, delete it'
+        }).then((result) => {
+
+          if (result.isConfirmed) {
+
+            this.loading.set(true);
+
+            this.postsService.deletePost(post._id)
+              .subscribe({
+                next: () => {
+
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    text: 'The post has been removed.',
+                    timer: 1500,
+                    showConfirmButton: false
+                  });
+
+                  // manejar paginación inteligente
+                  if (this.posts().length === 1 && this.page() > 1) {
+                    this.page.update(p => p - 1);
+                  }
+
+                  this.loadPosts();
+                },
+                error: (err) => {
+
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: err.message || 'Something went wrong'
+                  });
+
+                  this.loading.set(false);
+                }
+              });
+
+          }
+
+        });
+
         break;
     }
   }
